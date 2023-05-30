@@ -2,7 +2,7 @@
 
 This repository provides:
 
-* A [stack](blob/main/lib/find-an-sqs-event-stack.ts) that sets up the following infrastructure:
+* A [stack](lib/find-an-sqs-event-stack.ts) that sets up the following infrastructure:
 
 ![Container diagram showing an SNS Topic publishing to an SQS Queue, which invokes a Lambda, which then writes to an S3 Bucket](find-an-sqs-event.png)
 
