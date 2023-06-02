@@ -8,6 +8,13 @@ This repository provides:
 
 * Scripts to generate events via the sns topic and then search in the stored events in the s3 bucket
 
+## Blogs
+
+The code and scripts are discussed in two blog posts:
+
+* [AWS: Using the AWS CLI to search within files in an S3 Bucket - Part 1 - Cloudformation](https://www.codemunki.es/2023/06/01/aws-using-aws-cli-to-search-within-files-in-an-s3-bucket-pt1-cloudfromation/)
+* [AWS: Using the AWS CLI to search within files in an S3 Bucket - Part 2 - the Search Script](https://www.codemunki.es/2023/06/02/aws-using-aws-cli-to-search-within-files-in-an-s3-bucket-pt2-search-script/)
+
 ## Build and deploy the demo stack
 
 * `npm run build`   compile typescript to js
