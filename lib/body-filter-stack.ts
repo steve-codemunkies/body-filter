@@ -8,21 +8,21 @@ import { Queue } from 'aws-cdk-lib/aws-sqs';
 import { Bucket, BucketAccessControl } from 'aws-cdk-lib/aws-s3';
 import * as path from 'path';
 
-export class FindAnSqsEventStack extends cdk.Stack {
+export class BodyFilterStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // Create a Bucket to store the messages in
-    const bucket = new Bucket(this, 'findansqsevent-s3',
+    const bucket = new Bucket(this, 'bodyfilter-s3',
     {
       accessControl: BucketAccessControl.PRIVATE      
     });
 
     // Create a lambda to read events from an SQS and write them to the bucket
-    const lambda = new Function(this, 'findansqsevent-lambda',
+    const lambda = new Function(this, 'bodyfilter-lambda',
     {
       runtime: Runtime.NODEJS_18_X,
-      code: Code.fromAsset(path.join(__dirname, '/../js-function/findansqsevent')),
+      code: Code.fromAsset(path.join(__dirname, '/../js-function/bodyfilter')),
       handler: "index.handler",
       environment: {
         bucket: bucket.bucketName,
@@ -34,7 +34,7 @@ export class FindAnSqsEventStack extends cdk.Stack {
     bucket.grantPut(lambda);
 
     // Create an SQS queue
-    const queue = new Queue(this, 'findansqsevent-sqs');
+    const queue = new Queue(this, 'bodyfilter-sqs');
 
     // Invoke the lambda from the queue
     lambda.addEventSource(new SqsEventSource(queue, {
@@ -42,7 +42,7 @@ export class FindAnSqsEventStack extends cdk.Stack {
     }));
 
     // Create an SNS topic
-    const topic = new Topic(this, 'findansqsevent-sns');
+    const topic = new Topic(this, 'bodyfilter-sns');
 
     // Subscribe the queue to the topic
     topic.addSubscription(new SqsSubscription(queue));

@@ -1,8 +1,8 @@
 {
-  "name": "find-an-sqs-event",
+  "name": "body-filter",
   "version": "0.1.0",
   "bin": {
-    "find-an-sqs-event": "bin/find-an-sqs-event.js"
+    "body-filter": "bin/body-filter.js"
   },
   "scripts": {
     "build": "tsc",
